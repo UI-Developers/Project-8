@@ -17,30 +17,54 @@ $('#search').on('keyup', function(){
   } 
 });
 
-// $('#search').on('keyup', function(){
-// const value = $(this).val().toLowerCase();
-// 	$(".livesearch").filter(function() {
-// 	if ($(this).text().toLowerCase().indexOf(value) > -1) {
-// 		console.log(value);
-// 		const employeeName = document.getElementsByTagName('h3');
-// 		for (let i = 0; i < employeeName.length; i++){
-// 			var caption = employeeName[i].innerHTML.toLowerCase();
-// 			if (caption.indexOf(value) > -1) {
-// 		    	col.style.display = " ";
-// 		    } else {
-// 		    	var memberText = employeeName[i].parentNode;
-// 		    	var card = memberText.parentNode;
-// 		    	var cardContainer = card.parentNode;
-// 		    	var col = cardContainer.parentNode;
-// 		        col.style.display = "none";
-// 		    }
-// 		}	
-//       }
-//  	});
-// });
 
+function createUser(element) {
+	return document.createElement(element);
+}
 
+function append(parent, element) {
+	return parent.appendChild(element);
+}
 
+fetch("https://randomuser.me/api/?results=12")
+	.then((resp) => resp.json())
+	.then(function (data) {
+		let users = data.results;
+		return users.map(function (user) {
+			
+			let col = createUser('div'),
+				cardContainer = createUser('div'),
+				card = createUser('div'),
+				img = createUser('img'),
+				memberText = createUser('div'),
+				name = createUser('h3'),
+				email = createUser('p');
+				city = createUser('p');
+
+				col.className = 'col';
+				cardContainer.className = 'card-container';
+				card.className = 'card';
+				memberText.className = 'members-text';
+				img.src = user.picture.medium;
+
+				name.innerHTML = `${user.name.first} ${user.name.last}`;
+				email.innerHTML = `${user.email}`;
+				city.innerHTML = `${user.location.city}`;
+
+				append(col, cardContainer),
+				append(cardContainer, card),
+				append(card, img),
+				append(card, memberText),
+				append(memberText, name),
+				append(memberText, email),
+				append(memberText, city),
+				append(document.querySelector('.livesearch'), col);
+		})
+	})
+
+.catch(function (error) {
+	console.log(error);
+});
 
 // // GET MODAL ELEMENT
 // const modal = document.getElementById('simpleModal');
