@@ -17,7 +17,6 @@ $('#search').on('keyup', function(){
   } 
 });
 
-
 function createUser(element) {
 	return document.createElement(element);
 }
@@ -30,7 +29,7 @@ fetch("https://randomuser.me/api/?results=12")
 	.then((resp) => resp.json())
 	.then(function (data) {
 		let users = data.results;
-		return users.map(function (user) {
+		 users.map(function (user) {
 			
 			let col = createUser('div'),
 				cardContainer = createUser('div'),
@@ -43,9 +42,10 @@ fetch("https://randomuser.me/api/?results=12")
 
 				col.className = 'col';
 				cardContainer.className = 'card-container';
-				card.className = 'card';
-				memberText.className = 'members-text';
+				card.className = 'card modalBtn';
 				img.src = user.picture.medium;
+				memberText.className = 'members-text';
+				city.className = 'location';
 
 				name.innerHTML = `${user.name.first} ${user.name.last}`;
 				email.innerHTML = `${user.email}`;
@@ -59,41 +59,44 @@ fetch("https://randomuser.me/api/?results=12")
 				append(memberText, email),
 				append(memberText, city),
 				append(document.querySelector('.livesearch'), col);
-		})
+		});
+
+
+		// GET MODAL ELEMENT
+		const modal = document.getElementById('simpleModal');
+		// GET OPEN MODAL BUTTON
+		const modalBtn = document.getElementsByClassName('modalBtn');
+		// GET CLOSE BUTTON
+		const closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+		// LISTEN FOR OPEN CLICK
+		for (let i = 0; i < modalBtn.length; modalBtn[i++].addEventListener('click', openModal));
+		// LISTEN FOR CLOSE CLICK
+		closeBtn.addEventListener('click', closeModal);
+		// LISTEN FOR OUTSIDE CLICK
+		window.addEventListener('click', outsideClick);
+
+		// FUNCTION TO OPEN MODAL
+		function openModal() {
+		  modal.style.display = 'block';
+		}
+
+		// FUNCTION TO CLOSE MODAL
+		function closeModal() {
+		  modal.style.display = 'none';
+		}
+
+		// FUNCTION TO CLOSE MODAL IF OUTSIDE CLICK
+		function outsideClick(event) {
+		  if (event.target == modal) {
+		    modal.style.display = 'none';
+		  }
+		}
 	})
 
-.catch(function (error) {
-	console.log(error);
-});
+	.catch(function (error) {
+		console.log(error);
+	});
+	
 
-// // GET MODAL ELEMENT
-// const modal = document.getElementById('simpleModal');
-// // GET OPEN MODAL BUTTON
-// const modalBtn = document.getElementsByClassName('modalBtn')[0];
-// // GET CLOSE BUTTON
-// const closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-// // LISTEN FOR OPEN CLICK
-// modalBtn.addEventListener('click', openModal);
-// // LISTEN FOR CLOSE CLICK
-// closeBtn.addEventListener('click', closeModal);
-// // LISTEN FOR OUTSIDE CLICK
-// window.addEventListener('click', outsideClick);
-
-// // FUNCTION TO OPEN MODAL
-// function openModal() {
-//   modal.style.display = 'block';
-// }
-
-// // FUNCTION TO CLOSE MODAL
-// function closeModal() {
-//   modal.style.display = 'none';
-// }
-
-// // FUNCTION TO CLOSE MODAL IF OUTSIDE CLICK
-// function outsideClick(event) {
-//   if (event.target == modal) {
-//     modal.style.display = 'none';
-//   }
-// }
 
