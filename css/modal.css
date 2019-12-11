@@ -47,6 +47,10 @@
 	font-size: 30px;
 }
 
+.closeBtn::before {
+	content:"\00d7";
+}
+
 .closeBtn:hover, .closeBtn:focus {
 	color: #000000;
 	text-decoration: none;
@@ -66,8 +70,8 @@
 
 .img-modal {
 	border-radius: 50%;
-	width: 135px;
-	height: 135px;
+	width: 130px;
+	height: 130px;
 }
 @media (min-width: 768px) {
 	.img-modal {

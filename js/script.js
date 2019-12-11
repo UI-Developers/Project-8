@@ -25,12 +25,17 @@ function append(parent, element) {
 	return parent.appendChild(element);
 }
 
+function createModal(element) {
+	return document.createElement(element);
+}
+
 fetch("https://randomuser.me/api/?results=12")
 	.then((resp) => resp.json())
 	.then(function (data) {
 		let users = data.results;
 		 users.map(function (user) {
 			
+			var employeeID = user.id.value;
 			let col = createUser('div'),
 				cardContainer = createUser('div'),
 				card = createUser('div'),
@@ -42,6 +47,7 @@ fetch("https://randomuser.me/api/?results=12")
 
 				col.className = 'col';
 				cardContainer.className = 'card-container';
+				cardContainer.id = employeeID;
 				card.className = 'card modalBtn';
 				img.src = user.picture.medium;
 				memberText.className = 'members-text';
@@ -59,39 +65,69 @@ fetch("https://randomuser.me/api/?results=12")
 				append(memberText, email),
 				append(memberText, city),
 				append(document.querySelector('.livesearch'), col);
+
+			let simpleModal = createModal('div'),
+				modalContent = createModal('div'),
+				modalHeader = createModal('div'),
+				modalBtn = createModal('span'),
+				modalBody = createModal('div'),
+				modalImg = createModal('img'),
+				modalName = createModal('h3'),
+				modalEmail = createModal('p'),
+				modalCity = createModal('p'),
+				modalSeparator = createModal('div');
+				modalFooter = createModal('div');
+				modalPhone = createModal('p');
+				modalAddress = createModal('p');
+				modalDOB = createModal('p');
+
+				simpleModal.className = 'modal';
+				simpleModal.id = 'simpleModal' + employeeID;
+				modalContent.className = 'modal-content';
+				modalHeader.className = 'modal-header';
+				modalBtn.className = 'closeBtn';
+				modalBody.className = 'modal-body';
+				modalImg.className = 'img-modal';
+				modalSeparator.className = 'separator';
+				modalFooter.className = 'modal-footer';
+
+				modalImg.src = user.picture.large;
+				modalName.innerHTML = `${user.name.first} ${user.name.last}`;
+				modalEmail.innerHTML = `${user.email}`;
+				modalCity.innerHTML = `${user.location.city}`;
+				modalPhone.innerHTML = `${user.phone}`;
+				modalAddress.innerHTML = `${user.location.street.number} ${user.location.street.name}` + ", " +  `${user.location.state} ${user.location.postcode}`;
+				modalDOB.innerHTML = `${user.dob.date.slice(0,10).split("-").reverse().join("/")}`;
+
+				append(simpleModal, modalContent),
+				append(modalContent, modalHeader),
+				append(modalHeader, modalBtn),
+				append(modalContent, modalBody),
+				append(modalBody, modalImg),
+				append(modalBody, modalName),
+				append(modalBody, modalEmail),
+				append(modalBody, modalCity),
+				append(modalContent, modalSeparator),
+				append(modalContent, modalFooter),
+				append(modalFooter, modalPhone),
+				append(modalFooter, modalAddress),
+				append(modalFooter, modalDOB),
+				append(document.querySelector('.modalShell'), simpleModal);
+
+				cardContainer.addEventListener('click', () => {
+					simpleModal.style.display = 'block';
+				});
+
+				modalBtn.addEventListener('click', () => {
+					simpleModal.style.display = 'none';
+				});
+
+				window.addEventListener('click', () => {
+					if (event.target == simpleModal) {
+				    simpleModal.style.display = 'none';
+				  }
+				});
 		});
-
-
-		// GET MODAL ELEMENT
-		const modal = document.getElementById('simpleModal');
-		// GET OPEN MODAL BUTTON
-		const modalBtn = document.getElementsByClassName('modalBtn');
-		// GET CLOSE BUTTON
-		const closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-		// LISTEN FOR OPEN CLICK
-		for (let i = 0; i < modalBtn.length; modalBtn[i++].addEventListener('click', openModal));
-		// LISTEN FOR CLOSE CLICK
-		closeBtn.addEventListener('click', closeModal);
-		// LISTEN FOR OUTSIDE CLICK
-		window.addEventListener('click', outsideClick);
-
-		// FUNCTION TO OPEN MODAL
-		function openModal() {
-		  modal.style.display = 'block';
-		}
-
-		// FUNCTION TO CLOSE MODAL
-		function closeModal() {
-		  modal.style.display = 'none';
-		}
-
-		// FUNCTION TO CLOSE MODAL IF OUTSIDE CLICK
-		function outsideClick(event) {
-		  if (event.target == modal) {
-		    modal.style.display = 'none';
-		  }
-		}
 	})
 
 	.catch(function (error) {
