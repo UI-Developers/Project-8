@@ -36,14 +36,14 @@ fetch("https://randomuser.me/api/?results=12")
 		 users.map(function (user) {
 			
 			var employeeID = user.id.value;
-			let col = createUser('div'),
-				cardContainer = createUser('div'),
-				card = createUser('div'),
-				img = createUser('img'),
-				memberText = createUser('div'),
-				name = createUser('h3'),
-				email = createUser('p');
-				city = createUser('p');
+			let col = createUser('div');
+			let	cardContainer = createUser('div');
+			let	card = createUser('div');
+			let	img = createUser('img');
+			let	memberText = createUser('div');
+			let	name = createUser('h3');
+			let	email = createUser('p');
+			let	city = createUser('p');
 
 				col.className = 'col';
 				cardContainer.className = 'card-container';
@@ -66,20 +66,20 @@ fetch("https://randomuser.me/api/?results=12")
 				append(memberText, city),
 				append(document.querySelector('.livesearch'), col);
 
-			let simpleModal = createModal('div'),
-				modalContent = createModal('div'),
-				modalHeader = createModal('div'),
-				modalBtn = createModal('span'),
-				modalBody = createModal('div'),
-				modalImg = createModal('img'),
-				modalName = createModal('h3'),
-				modalEmail = createModal('p'),
-				modalCity = createModal('p'),
-				modalSeparator = createModal('div');
-				modalFooter = createModal('div');
-				modalPhone = createModal('p');
-				modalAddress = createModal('p');
-				modalDOB = createModal('p');
+			let simpleModal = createModal('div');
+			let	modalContent = createModal('div');
+			let	modalHeader = createModal('div');
+			let	modalBtn = createModal('span');
+			let	modalBody = createModal('div');
+			let	modalImg = createModal('img');
+			let	modalName = createModal('h3');
+			let	modalEmail = createModal('p');
+			let	modalCity = createModal('p');
+			let	modalSeparator = createModal('div');
+			let	modalFooter = createModal('div');
+			let	modalPhone = createModal('p');
+			let	modalAddress = createModal('p');
+			let	modalDOB = createModal('p');
 
 				simpleModal.className = 'modal';
 				simpleModal.id = 'simpleModal' + employeeID;
