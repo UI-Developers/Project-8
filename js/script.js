@@ -97,7 +97,7 @@ fetch("https://randomuser.me/api/?results=12")
 				modalCity.innerHTML = `${user.location.city}`;
 				modalPhone.innerHTML = `${user.phone}`;
 				modalAddress.innerHTML = `${user.location.street.number} ${user.location.street.name}` + ", " +  `${user.location.state} ${user.location.postcode}`;
-				modalDOB.innerHTML = `${user.dob.date.slice(0,10).split("-").reverse().join("/")}`;
+				modalDOB.innerHTML = `Birthday: ${user.dob.date.slice(0,10).split("-").reverse().join("/")}`;
 
 				append(simpleModal, modalContent),
 				append(modalContent, modalHeader),

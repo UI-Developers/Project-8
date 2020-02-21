@@ -59,7 +59,7 @@ h2 {
 }
 
 img {
-	width: 125px;
+	width: 115px;
 	border-radius: 50%;
 }
 
@@ -104,12 +104,13 @@ input[type="search"] {
 	}
 	.members-text {
 	  position: absolute;
-	  margin-left: 110px;
-	  top: 13px;
+	  margin-left: 90px;
+	  top: 8px;
 	}
 	.card {
 		position: relative;
 		text-align: left;
+		padding: 1.625em 1em 1.625em 1em;
 	}	
 
 	.clearfix::after {
@@ -117,25 +118,35 @@ input[type="search"] {
 		display: table;
 		clear: both;		
 	}
-}
 
-@media (min-width: 768px) and (max-width: 1100px) {
 	img {
-		width: 90px;
+		width: 80px;
+	}
+
+	h3 {
+		font-size: 1.125em;
+	}
+
+	p {
+		font-size: .875em;
 	}
 }
 
-@media (min-width: 1100px) {
+
+@media (min-width: 1024px) {
 	.container {
-		max-width: 1300px;
+		max-width: 1500px;
 		width: 95%;
 	}
 	.col {
 		width: 33.33%;
 	}
+	img {
+		width: 70px;
+	}
 	.members-text {
-	  margin-left: 145px;
-	  top: 23px;
+	  margin-left: 85px;
+	  top: 8px;
 	}
 	.searchForm {
 		text-align: right;
@@ -148,5 +159,24 @@ input[type="search"] {
 		text-align: left;
 		margin-left: .625em;
 		margin-top: 1.5em;
+	}
+	h3 {
+		font-size: 1em;
+	}
+}
+
+@media (min-width: 1250px) {
+	img {
+		width: 105px;
+	}
+	h3 {
+		font-size: 1.25em;
+	}
+	.members-text {
+	  margin-left: 125px;
+	  top: 13px;
+	}
+	.members-text p {
+		font-size: 1em;
 	}
 }

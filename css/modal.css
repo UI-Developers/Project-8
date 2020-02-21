@@ -14,8 +14,9 @@
 .modal-content {
 	background-color: #f4f4f4;
 	margin: 5% auto;
+	font-size: 0.9375em;
 	padding: 0 35px 30px 35px;
-	width: 70%;
+	max-width: 85%;
 	border-radius: 10px;
 	box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
 	animation-name: modalopen;
@@ -23,12 +24,13 @@
 }
 @media (min-width: 768px) {
 	.modal-content {
-		width: 40%;
+		width: 50%;
+		font-size: 1.125em;
 	}
 }
 @media (min-width: 1024px) {
 	.modal-content {
-		width: 30%;
+		width: 35%;
 	}
 }
 
